@@ -7,6 +7,8 @@ spring:
     
   jpa:
     generate-ddl: true
+    hibernate:
+      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     
@@ -15,20 +17,3 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
     static-path-pattern: /static/**
-    
-    
-# Email Propeties
-#===========================
-email: 
- host: mail.smtp.host
- hostType: smtp.gmail.com
- factoryPort: mail.smtp.socketFactory.port
- factoryPortType: 465
- classes: mail.smtp.socketFactory.class
- classType: javax.net.ssl.SSLSocketFactory
- auth: mail.smtp.auth
- port: mail.smtp.port
- portType: 465
- from: jagadish.borra531@gmail.com
- password: Jagadish@2022    
-    

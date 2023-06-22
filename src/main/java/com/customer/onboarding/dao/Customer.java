@@ -2,6 +2,7 @@ package com.customer.onboarding.dao;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,8 +27,10 @@ public class Customer {
 
 	private String gender;
 
+	@Column(unique = true)
 	private String email;
 
+	@Column(unique = true)
 	private String phoneNumber;
 
 	private String addressLine1;
