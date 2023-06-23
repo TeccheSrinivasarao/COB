@@ -52,8 +52,8 @@
 							<i class="mdi mdi-contacts menu-icon"></i>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/getPayments' />"> <span
-							class="menu-title">Payments and Transfer</span> <i
+						href="<c:url value='/transactionHistory/${customerId}' />"> <span
+							class="menu-title">Payments and Transactions</span> <i
 							class="mdi mdi-format-list-bulleted menu-icon"></i>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"

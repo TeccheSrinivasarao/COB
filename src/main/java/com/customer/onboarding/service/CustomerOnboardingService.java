@@ -1,6 +1,8 @@
 package com.customer.onboarding.service;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.customer.onboarding.dao.ConfirmPassword;
 import com.customer.onboarding.dao.Customer;
+import com.customer.onboarding.dao.Transactions;
 import com.customer.onboarding.repo.CustomerRepository;
 
 @Service
@@ -67,6 +70,70 @@ public class CustomerOnboardingService {
 		Customer response = repository.findByPasswordAndPhoneNumberOrEmail(password,userName,userName);
 		
 		return response;
+	}
+
+	public List<Transactions> getMiniStatement() {
+		List<Transactions> transactions = Arrays.asList(
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d)
+				);
+		return transactions;
+	}
+
+	public List<Transactions> getOneMonthStatement() {
+		List<Transactions> transactions = Arrays.asList(
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d)
+				);
+		return transactions;
+	}
+
+	public List<Transactions> get3MonthsStatement() {
+		List<Transactions> transactions = Arrays.asList(
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d)
+				);
+		return transactions;
+	}
+
+	public List<Transactions> get1YearStatement() {
+		List<Transactions> transactions = Arrays.asList(
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d),
+				new Transactions("1234567324","2023-06-22","IRCTC","Dr",500d, 9500d)
+				);
+		return transactions;
 	}
 
 }

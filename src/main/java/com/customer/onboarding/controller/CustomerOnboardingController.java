@@ -1,6 +1,8 @@
 package com.customer.onboarding.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.customer.onboarding.dao.ConfirmPassword;
 import com.customer.onboarding.dao.Customer;
+import com.customer.onboarding.dao.Transactions;
 import com.customer.onboarding.service.CustomerOnboardingService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -77,7 +80,7 @@ public class CustomerOnboardingController {
 
 		Customer customer = service.checkLoginUser(userName, password);
 		if (null != customer) {
-			modelAndView.addObject("customerId",customer.getCustomerId());
+			modelAndView.addObject("customerId", customer.getCustomerId());
 			modelAndView.addObject("CREDIT_CARD", "150000");
 			modelAndView.addObject("UPI", "200000");
 			modelAndView.addObject("TOTAL_COUNT", "350000");
@@ -91,30 +94,62 @@ public class CustomerOnboardingController {
 	}
 
 	@GetMapping(path = "/getOverView/{customerId}")
-	public ModelAndView getOverView(@PathVariable String  customerId) {
+	public ModelAndView getOverView(@PathVariable String customerId) {
 		ModelAndView modelAndView = new ModelAndView();
 		Customer customer = service.findCrustomerDetails(customerId);
 		modelAndView.addObject("customer", customer);
-		modelAndView.addObject("cusomerId",customer.getCustomerId());
+		modelAndView.addObject("cusomerId", customer.getCustomerId());
 		modelAndView.setViewName("overView");
 		return modelAndView;
 
 	}
+
 	@GetMapping(path = "/charts/{customerId}")
-	public ModelAndView charts(@PathVariable String  customerId) {
+	public ModelAndView charts(@PathVariable String customerId) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("cusomerId",customerId);
+		modelAndView.addObject("cusomerId", customerId);
 		modelAndView.addObject("CREDIT_CARD", "150000");
 		modelAndView.addObject("UPI", "200000");
 		modelAndView.addObject("TOTAL_COUNT", "350000");
 		modelAndView.setViewName("home");
 		return modelAndView;
 	}
-	
+
 	@GetMapping(path = "/logout")
 	public ModelAndView logout() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login");
+		return modelAndView;
+	}
+
+	@GetMapping(path = "/transactionHistory/{customerId}")
+	public ModelAndView transaction(@PathVariable String customerId) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("customerId", customerId);
+		modelAndView.setViewName("transactions");
+		return modelAndView;
+	}
+	
+	@GetMapping(path = "/transactionsHistory/{customerId}")
+	public ModelAndView displayTransactions(@PathVariable String customerId,HttpServletRequest request) {
+		String option = request.getParameter("txOption");
+		ModelAndView modelAndView = new ModelAndView();
+		List<Transactions> transactionsList = new ArrayList<>();
+		if("mini".equalsIgnoreCase(option)) {
+			transactionsList = service.getMiniStatement();
+		}else if("onemonth".equalsIgnoreCase(option)) {
+			transactionsList = service.getOneMonthStatement();
+		}else if("3months".equalsIgnoreCase(option)) {
+			transactionsList = service.get3MonthsStatement();
+		}else if("oneyear".equalsIgnoreCase(option)) {
+			transactionsList = service.get1YearStatement();
+		}
+			
+		
+		modelAndView.addObject("transactionsList", transactionsList);
+		
+		modelAndView.addObject("customerId", customerId);
+		modelAndView.setViewName("transactions");
 		return modelAndView;
 	}
 }
